@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+        </style>
+        <script src='./src/playcanvas-stable.js'></script>
+        <script src='./src/playcanvas-gltf.js'></script>
+    </head>
+    <body>
+        <script>
+            var canvas = document.createElement('canvas');
+            document.body.appendChild(canvas);
+
+            // 初始化键盘操作、鼠标、触屏操作
+            var app = new pc.Application(canvas, {
+                mouse: new pc.Mouse(document.body),
+                keyboard: new pc.Keyboard(window),
+                touch: new pc.TouchDevice(window),
+            });
+            app.start();
+
+            // fill the available space at full resolution
+            app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
+            app.setCanvasResolution(pc.RESOLUTION_AUTO);
+
+            app.scene.gammaCorrection = pc.GAMMA_SRGB;
+            app.scene.toneMapping = pc.TONEMAP_ACES;
+
+            // ensure canvas is resized when window changes size
+            window.addEventListener('resize', function() {
+                app.resizeCanvas();
+            });
+
+            // create camera entity
+            var camera = new pc.Entity('camera');
+            camera.addComponent('camera', {
+                clearColor: [ 1, 1, 1 ]
+            });
+            app.root.addChild(camera);
+            camera.setLocalPosition(0, 1, 20);
+            
+            // Make the camera interactive
+            camera.addComponent('script');
+            app.assets.loadFromUrl('./src/orbit-camera.js', 'script', function (err, asset) {
+                camera.script.create('orbitCamera');
+                camera.script.create('keyboardInput');
+                camera.script.create('mouseInput');
+                camera.script.create('touchInput');
+
+                console.log(this.cameraPosition)
+                if (this.cameraPosition) {
+                    camera.script.orbitCamera.distance = this.cameraPosition.length();
+                } else if (this.gltf) {
+                    camera.script.orbitCamera.focusEntity = this.gltf;
+                }
+            }.bind(this));
+
+            // create directional light entity
+            var light = new pc.Entity('light');
+            light.addComponent('light',);
+            app.root.addChild(light);
+            light.setEulerAngles(45, 0, 45);
+
+            // rotator script
+            var Rotate = pc.createScript('rotate');
+            Rotate.prototype.update = function (deltaTime) {
+                this.entity.rotate(0, deltaTime * 20, 0);
+            };
+
+            // glTF scene root that rotates
+            var gltfRoot = new pc.Entity();
+            gltfRoot.addComponent('script');
+            gltfRoot.script.create('rotate');
+            app.root.addChild(gltfRoot);
+
+            // Set a prefiltered cubemap as the skybox
+            var cubemapAsset = new pc.Asset('helipad', 'cubemap', {
+                url: "./assets/cubemap/6079289/Helipad.dds"
+            }, {
+                "textures": [
+                    "./assets/cubemap/6079292/Helipad_posx.png",
+                    "./assets/cubemap/6079290/Helipad_negx.png",
+                    "./assets/cubemap/6079293/Helipad_posy.png",
+                    "./assets/cubemap/6079298/Helipad_negy.png",
+                    "./assets/cubemap/6079294/Helipad_posz.png",
+                    "./assets/cubemap/6079300/Helipad_negz.png"
+                ],
+                "magFilter": 1,
+                "minFilter": 5,
+                "anisotropy": 1,
+                "name": "Helipad",
+                "rgbm": true,
+                "prefiltered": "Helipad.dds"
+            });
+            app.assets.add(cubemapAsset);
+            app.assets.load(cubemapAsset);
+
+            cubemapAsset.ready(function () {
+                app.scene.skyboxMip = 2;
+                app.scene.setSkybox(cubemapAsset.resources);
+            });
+
+
+            // load model
+            app.assets.loadFromUrl('assets/corvette_stingray/scene.gltf', 'json', function (err, asset) {
+                var json = asset.resource;
+                var gltf = JSON.parse(json);
+                loadGltf(gltf, app.graphicsDevice, function (err, res) {
+                    // add the loaded scene to the hierarchy
+                    gltfRoot.addComponent('model');
+                    gltfRoot.model.model = res.model;
+                }, {
+                    basePath: 'assets/corvette_stingray/'
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Corvette Stingray
+* source:	https://sketchfab.com/3d-models/corvette-stingray-edabade6d6074197ba73a52809e398a4
+* author:	Harri3D (https://sketchfab.com/harrisondorn)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Corvette Stingray" (https://sketchfab.com/3d-models/corvette-stingray-edabade6d6074197ba73a52809e398a4) by Harri3D (https://sketchfab.com/harrisondorn) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
