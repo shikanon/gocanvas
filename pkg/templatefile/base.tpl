@@ -25,7 +25,7 @@
             // 初始化摄像头
             {{ template "camera" . }}
             
-            // 初始化摄像头
+            // 初始化灯光
             {{ template "light" . }}
 
             // 初始化模型

@@ -9,6 +9,7 @@
 
     // Set a prefiltered cubemap as the skybox
     {{- with .SkyBoxResource}}
+    {{- if ne .Name ""}}
     var cubemapAsset{{ .Name }} = new pc.Asset('{{ .Name }}', 'cubemap', {
         url: "{{ .URL }}"
     }, {
@@ -31,5 +32,6 @@
         app.scene.skyboxMip = 2;
         app.scene.setSkybox(cubemapAsset{{ .Name }}.resources);
     });
+    {{- end }}
     {{- end }}
 {{ end }}

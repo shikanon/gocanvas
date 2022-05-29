@@ -17,6 +17,10 @@
             basePath: '{{ .BasePath }}'
         });
     });
+    // set po
+    {{- if .Pos }}
+    model{{ .Name }}.setLocalPosition({{ .Pos.X }}, {{ .Pos.Y }}, {{ .Pos.Z }});
+    {{- end }}
     {{- end }}
     {{- end }}
 {{ end }}

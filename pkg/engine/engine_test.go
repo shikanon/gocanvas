@@ -42,7 +42,7 @@ func TestHtmlEngine_RenderBytes(t *testing.T) {
 			name: "test html engine for camera",
 			e: &HtmlEngine{
 				Writer:         os.Stdout,
-				CameraResource: []Camera{{Name: "01", Pos: Position{X: 1, Y: 1, Z: 30}}},
+				CameraResource: []Camera{{Name: "01", Pos: Position{X: 1, Y: 1, Z: 30}, Interactive: true}},
 				LightResource:  []Light{},
 			},
 			// wantResult: []byte(""),

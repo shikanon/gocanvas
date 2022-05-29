@@ -30,8 +30,9 @@ type TemplateValue interface {
 
 type EngineMeta struct{}
 type Camera struct {
-	Name string
-	Pos  Position
+	Name        string
+	Pos         Position
+	Interactive bool
 }
 
 func (c *Camera) Check() (err error) {
@@ -84,6 +85,7 @@ type Model struct {
 	Type      ModelType
 	BasePath  string
 	ModelPath string
+	Pos       Position
 }
 
 func (m *Model) Check() (err error) {
@@ -96,6 +98,19 @@ func (m *Model) Check() (err error) {
 		return
 	}
 	return
+}
+
+func (m *Model) FillDefault() {
+	if m.Name == "" {
+		m.Name = fmt.Sprintf("%d", rand.Int())
+	}
+	if m.Pos == (Position{}) {
+		m.Pos = Position{
+			X: 0,
+			Y: 0,
+			Z: 0,
+		}
+	}
 }
 
 type Script struct{}

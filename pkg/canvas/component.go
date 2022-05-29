@@ -17,6 +17,7 @@ func DefaultCamera() engine.Camera {
 			Y: 0,
 			Z: 10,
 		},
+		Interactive: true,
 	}
 }
 
