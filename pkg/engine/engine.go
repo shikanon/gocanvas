@@ -11,11 +11,13 @@ import (
 )
 
 var (
-	ErrNil                   = errors.New("value is nil")
-	ErrInvalid               = errors.New("value is invalid value")
-	ModelType_GLTF ModelType = "gltf"
-	ModelType_GLB  ModelType = "glb"
-	ModelType_OBJ  ModelType = "obj"
+	ErrNil                        = errors.New("value is nil")
+	ErrInvalid                    = errors.New("value is invalid value")
+	ModelType_GLTF    ModelType   = "gltf"
+	ModelType_GLB     ModelType   = "glb"
+	ModelType_OBJ     ModelType   = "obj"
+	ELEMENTTYPE_IMAGE ElementType = "image"
+	ELEMENTTYPE_TEXT  ElementType = "text"
 )
 
 type Engine interface {
@@ -29,6 +31,8 @@ type TemplateValue interface {
 }
 
 type EngineMeta struct{}
+
+// 相机
 type Camera struct {
 	Name        string
 	Pos         Position
@@ -60,6 +64,7 @@ func (c *Camera) FillDefault() {
 	}
 }
 
+// 灯光
 type Light struct {
 	Name string
 }
@@ -78,8 +83,7 @@ func (l *Light) FillDefault() {
 	}
 }
 
-type ModelType string
-
+// 模型
 type Model struct {
 	Name      string
 	Type      ModelType
@@ -87,6 +91,8 @@ type Model struct {
 	ModelPath string
 	Pos       Position
 }
+
+type ModelType string
 
 func (m *Model) Check() (err error) {
 	if (m.Name == "") || (m.Type == "") || (m.BasePath == "") || (m.ModelPath == "") {
@@ -113,7 +119,19 @@ func (m *Model) FillDefault() {
 	}
 }
 
+// 脚本
 type Script struct{}
+
+type ElementType string
+
+// 文本UIwidget
+type Element struct {
+	Name string
+	Type ElementType
+	Text string
+}
+
+// 天空盒
 type SkyBox struct {
 	Name        string
 	URL         string
@@ -125,13 +143,15 @@ type SkyBox struct {
 	Prefiltered string
 }
 
+// html页面引擎
 type HtmlEngine struct {
-	Writer         io.Writer
-	Meta           []EngineMeta // 基本属性，比如是否iframe、占据全屏
-	CameraResource []Camera     // 相机资源
-	LightResource  []Light      // 灯光资源
-	ModelResource  []Model      // 模型资源
-	SkyBoxResource SkyBox       // 天空盒
+	Writer          io.Writer
+	Meta            []EngineMeta // 基本属性，比如是否iframe、占据全屏
+	CameraResource  []Camera     // 相机资源
+	LightResource   []Light      // 灯光资源
+	ModelResource   []Model      // 模型资源
+	ElementResource []Element    // UI资源
+	SkyBoxResource  SkyBox       // 天空盒
 }
 
 func (e *HtmlEngine) Check() (err error) {

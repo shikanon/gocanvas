@@ -30,6 +30,9 @@
 
             // 初始化模型
             {{ template "model" . }}
+
+            // 初始化UI
+            {{ template "element" . }}
         </script>
     </body>
 </html>

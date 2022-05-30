@@ -49,6 +49,15 @@ func DefaultLight() engine.Light {
 	}
 }
 
+// 默认UI
+func DefaultElement(text string) engine.Element {
+	return engine.Element{
+		Name: "element",
+		Type: engine.ELEMENTTYPE_TEXT,
+		Text: text,
+	}
+}
+
 // 加载gltf模型
 func LoadGLTFModel(modelpath string) (m engine.Model, err error) {
 	if strings.Contains(modelpath, "http://") {

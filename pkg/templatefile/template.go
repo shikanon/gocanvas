@@ -20,6 +20,9 @@ var light []byte
 //go:embed model.tpl
 var model []byte
 
+//go:embed element.tpl
+var element []byte
+
 func BaseTemplate() string {
 	return string(base)
 }
@@ -40,6 +43,10 @@ func ModelTemplate() string {
 	return string(model)
 }
 
+func ElementTemplate() string {
+	return string(element)
+}
+
 func TemplateMerge(args ...string) (tpl *template.Template, err error) {
 	tpl = template.New("engine")
 	for _, arg := range args {
@@ -52,5 +59,5 @@ func TemplateMerge(args ...string) (tpl *template.Template, err error) {
 }
 
 func EngineTemplate() (*template.Template, error) {
-	return TemplateMerge(BaseTemplate(), ApplicationTemplate(), CameraTemplate(), LightTemplate(), ModelTemplate())
+	return TemplateMerge(BaseTemplate(), ApplicationTemplate(), CameraTemplate(), LightTemplate(), ModelTemplate(), ElementTemplate())
 }

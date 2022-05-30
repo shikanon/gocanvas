@@ -41,6 +41,10 @@ func (s *ApplicationScene) AddLight(l engine.Light) {
 	s.LightResource = append(s.LightResource, l)
 }
 
+func (s *ApplicationScene) AddElement(e engine.Element) {
+	s.ElementResource = append(s.ElementResource, e)
+}
+
 func (s *ApplicationScene) AddSkyBox(box engine.SkyBox) {
 	s.SkyBoxResource = box
 }

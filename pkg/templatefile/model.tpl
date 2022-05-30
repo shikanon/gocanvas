@@ -17,10 +17,10 @@
             basePath: '{{ .BasePath }}'
         });
     });
-    // set po
+    {{- end }}
+    // set position
     {{- if .Pos }}
     model{{ .Name }}.setLocalPosition({{ .Pos.X }}, {{ .Pos.Y }}, {{ .Pos.Z }});
-    {{- end }}
     {{- end }}
     {{- end }}
 {{ end }}

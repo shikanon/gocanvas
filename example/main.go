@@ -17,6 +17,8 @@ func render(w http.ResponseWriter, r *http.Request) {
 	skybox := gocanvas.DefaultSkybox()
 	// 创建一个灯光
 	light := gocanvas.DefaultLight()
+	// 创建UI
+	element := gocanvas.DefaultElement("hello world")
 	// 创建一个模型
 	model, err := gocanvas.LoadGLTFModel("./assets/corvette_stingray/scene.gltf")
 	if err != nil {
@@ -28,11 +30,13 @@ func render(w http.ResponseWriter, r *http.Request) {
 		Y: -2, // 上下
 		Z: -5, // 前后
 	}
+
 	// 加入到场景中
 	scene.AddCamera(camera)
 	scene.AddSkyBox(skybox)
 	scene.AddLight(light)
 	scene.AddModel(model)
+	scene.AddElement(element)
 	// 渲染
 	err = scene.Render()
 	if err != nil {
