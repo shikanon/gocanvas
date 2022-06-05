@@ -1,11 +1,11 @@
-![logo](https://github.com/shikanon/gocanvas/blob/main/docs/logo.png)
+<img src="https://github.com/shikanon/gocanvas/blob/main/docs/logo.png" width="600">
+
 # gocanvas
 
 [![GitHub license](https://img.shields.io/github/license/shikanon/gocanvas)](https://github.com/shikanon/gocanvas/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/shikanon/gocanvas)](https://github.com/shikanon/gocanvas/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/shikanon/gocanvas)](https://github.com/shikanon/gocanvas/network)
 [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/)
-[![Go Report Card](https://goreportcard.com/badge/github.com/shikanon/gocanvas)](https://goreportcard.com/report/github.com/shikanon/gocanvas)
 
 基于golang封装的3D模型动画演示库，支撑gltf、obj、fbx等格式，支撑天空盒、灯光和脚本动画编辑。
 
