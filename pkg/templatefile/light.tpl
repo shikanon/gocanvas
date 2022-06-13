@@ -3,7 +3,9 @@
     {{- range .LightResource }}
     var light{{ .Name }} = new pc.Entity('light{{ .Name }}');
     light{{ .Name }}.addComponent('light',);
+    {{- if .EulerAngle }}
     light{{ .Name }}.setEulerAngles({{ .EulerAngle.X }}, {{ .EulerAngle.Y }}, {{ .EulerAngle.Z }});
+    {{- end }}
     app.root.addChild(light{{ .Name }});
     {{- end }}
 

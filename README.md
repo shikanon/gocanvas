@@ -10,9 +10,11 @@
 GoCavans是一个golang封装的3D模型动画演示库，提供了gltf、obj、fbx等多种模型格式加载，支持天空盒、灯光和脚本动画编辑等功能。相比于[g3n](https://github.com/g3n/engine)等3D框架，GoCavans 更轻量并且简单易用。
 
 ## 运行demo
-如果你想快速体验，可以运行 [demo](https://github.com/shikanon/gocanvas/blob/main/docs/run-demo.md)示例:
+如果你想快速体验，可以运行 [demo](https://github.com/shikanon/gocanvas/blob/main/docs/run-demo.md)示例，他是非常简单的:
 
 [example](./example)
+
+![](https://github.com/shikanon/gocanvas/blob/main/docs/demo.png)
 
 ## Usage
 

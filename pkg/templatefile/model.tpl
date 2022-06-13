@@ -22,5 +22,8 @@
     {{- if .Pos }}
     model{{ .Name }}.setLocalPosition({{ .Pos.X }}, {{ .Pos.Y }}, {{ .Pos.Z }});
     {{- end }}
+    {{- if .EulerAngle }}
+    model{{ .Name }}.setEulerAngles({{ .EulerAngle.X }}, {{ .EulerAngle.Y }}, {{ .EulerAngle.Z }});
+    {{- end }}
     {{- end }}
 {{ end }}

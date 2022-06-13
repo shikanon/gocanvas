@@ -35,7 +35,7 @@ type EngineMeta struct{}
 // 相机
 type Camera struct {
 	Name        string
-	Pos         Position
+	Pos         XYZ
 	Interactive bool
 }
 
@@ -44,7 +44,7 @@ func (c *Camera) Check() (err error) {
 		err = fmt.Errorf("camera name %w", ErrNil)
 		return
 	}
-	if c.Pos == (Position{}) {
+	if c.Pos == (XYZ{}) {
 		err = fmt.Errorf("camera position %w", ErrNil)
 		return
 	}
@@ -55,8 +55,8 @@ func (c *Camera) FillDefault() {
 	if c.Name == "" {
 		c.Name = fmt.Sprintf("%d", rand.Int())
 	}
-	if c.Pos == (Position{}) {
-		c.Pos = Position{
+	if c.Pos == (XYZ{}) {
+		c.Pos = XYZ{
 			X: 0,
 			Y: 0,
 			Z: 0,
@@ -93,11 +93,12 @@ func (l *Light) FillDefault() {
 
 // 模型
 type Model struct {
-	Name      string
-	Type      ModelType
-	BasePath  string
-	ModelPath string
-	Pos       Position
+	Name       string
+	Type       ModelType
+	BasePath   string
+	ModelPath  string
+	Pos        XYZ
+	EulerAngle XYZ
 }
 
 type ModelType string
@@ -118,8 +119,15 @@ func (m *Model) FillDefault() {
 	if m.Name == "" {
 		m.Name = fmt.Sprintf("%d", rand.Int())
 	}
-	if m.Pos == (Position{}) {
-		m.Pos = Position{
+	if m.Pos == (XYZ{}) {
+		m.Pos = XYZ{
+			X: 0,
+			Y: 0,
+			Z: 0,
+		}
+	}
+	if m.EulerAngle == (XYZ{}) {
+		m.EulerAngle = XYZ{
 			X: 0,
 			Y: 0,
 			Z: 0,

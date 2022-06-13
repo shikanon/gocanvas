@@ -12,7 +12,7 @@ import (
 func DefaultCamera() engine.Camera {
 	return engine.Camera{
 		Name: "camera",
-		Pos: engine.Position{
+		Pos: engine.XYZ{
 			X: 0,
 			Y: 0,
 			Z: 10,
@@ -25,14 +25,14 @@ func DefaultCamera() engine.Camera {
 func DefaultSkybox() engine.SkyBox {
 	return engine.SkyBox{
 		Name: "helipad",
-		URL:  "./assets/cubemap/6079289/Helipad.dds",
+		URL:  "./assets/cubemap/Helipad/6079289/Helipad.dds",
 		Textures: [6]string{
-			"./assets/cubemap/6079292/Helipad_posx.png",
-			"./assets/cubemap/6079290/Helipad_negx.png",
-			"./assets/cubemap/6079293/Helipad_posy.png",
-			"./assets/cubemap/6079298/Helipad_negy.png",
-			"./assets/cubemap/6079294/Helipad_posz.png",
-			"./assets/cubemap/6079300/Helipad_negz.png",
+			"./assets/cubemap/Helipad/6079292/Helipad_posx.png",
+			"./assets/cubemap/Helipad/6079290/Helipad_negx.png",
+			"./assets/cubemap/Helipad/6079293/Helipad_posy.png",
+			"./assets/cubemap/Helipad/6079298/Helipad_negy.png",
+			"./assets/cubemap/Helipad/6079294/Helipad_posz.png",
+			"./assets/cubemap/Helipad/6079300/Helipad_negz.png",
 		},
 		MagFilter:   1,
 		MinFilter:   5,
@@ -46,6 +46,11 @@ func DefaultSkybox() engine.SkyBox {
 func DefaultLight() engine.Light {
 	return engine.Light{
 		Name: "light",
+		EulerAngle: engine.XYZ{
+			X: 0,
+			Y: 45,
+			Z: 0,
+		},
 	}
 }
 
