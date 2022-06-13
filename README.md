@@ -9,7 +9,8 @@
 
 基于golang封装的3D模型动画演示库，支撑gltf、obj、fbx等格式，支撑天空盒、灯光和脚本动画编辑。
 
-## Example
+## 运行demo
+如果你想快速体验，可以运行 [demo](https://github.com/shikanon/gocanvas/blob/main/docs/run-demo.md)示例:
 
 [example](./example)
 
