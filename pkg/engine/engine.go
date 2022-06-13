@@ -66,7 +66,8 @@ func (c *Camera) FillDefault() {
 
 // 灯光
 type Light struct {
-	Name string
+	Name       string
+	EulerAngle XYZ
 }
 
 func (l *Light) Check() (err error) {
@@ -80,6 +81,13 @@ func (l *Light) Check() (err error) {
 func (l *Light) FillDefault() {
 	if l.Name == "" {
 		l.Name = fmt.Sprintf("%d", rand.Int())
+	}
+	if l.EulerAngle == (XYZ{}) {
+		l.EulerAngle = XYZ{
+			X: 0,
+			Y: 0,
+			Z: 0,
+		}
 	}
 }
 
